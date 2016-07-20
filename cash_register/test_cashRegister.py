@@ -38,9 +38,9 @@ class TestCashRegister(TestCase):
         self.assertEqual(expected_out, cash_register.print_all_ticket('../no_discount_with_1_good_with_only_barcood.json'))
         expected_out = \
             '***<没钱赚商店>购物清单***\n' + \
-            '名称: 苹果, 数量: 5(斤), 单价: 5.5(元), 小计: 27.50(元)\n' + \
+            '名称: 苹果, 数量: 2(斤), 单价: 5.5(元), 小计: 11.00(元)\n' + \
             '----------------------\n' + \
-            '总计: 27.50(元)\n' + \
+            '总计: 11.00(元)\n' + \
             '**********************\n'
         self.assertEqual(expected_out, cash_register.print_all_ticket('../no_discount_with_1_good_with_barcood_with_number.json'))
 
