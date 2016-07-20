@@ -26,9 +26,9 @@ class CashRegister():
             good_information_list = json.load(f)
             return good_information_list
 
-    def produce_shopping_good_list(self):
+    def produce_shopping_good_list(self, input_file):
         tmp_dict = {}
-        with open('../input.json', 'r+', encoding='utf-8') as f:
+        with open(input_file, 'r+', encoding='utf-8') as f:
             data = json.load(f)
             for item in data:
                 tmp = item.split('-')
@@ -39,8 +39,10 @@ class CashRegister():
             shopping_dict = dict(count_dict, **tmp_dict) # 存放商品编码和购买数量
             return shopping_dict
 
+
+
     def print_ticket(self):
-        shopping_dict = self.produce_shopping_good_list()
+        shopping_dict = self.produce_shopping_good_list('../input.json')
         total_cost = 0.0
         name = ''
         unit = ''
