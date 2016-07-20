@@ -54,9 +54,10 @@ class CashRegister():
         name = ''
         unit = ''
         price = 0.0
+        res = ''
         single_total = 0.0
 
-
+        res += '***<没钱赚商店>购物清单***'
         print('***<没钱赚商店>购物清单***')
         for key in shopping_dict:
             count = shopping_dict[key]
@@ -71,10 +72,15 @@ class CashRegister():
             total_cost += single_total
             single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
             print(single_info)
+            res += single_info
 
         print('----------------------')
+        res += '----------------------'
         print('总计: ' + str(total_cost) + '(元)')
+        res += '总计: ' + str(total_cost) + '(元)'
         print('**********************')
+        res += '**********************'
+        return res
 
     def print_buy2send1_ticket(self, input_file):
 
@@ -87,8 +93,10 @@ class CashRegister():
         unit = ''
         price = 0.0
         buy2send1_good = []
+        res = ''
 
         print('***<没钱赚商店>购物清单***')
+        res += '***<没钱赚商店>购物清单***'
         for key in shopping_dict:
             count = shopping_dict[key]
             if key in buy2send1_good_list and float(count) >= 3.0:
@@ -110,6 +118,7 @@ class CashRegister():
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
                 print(single_info)
+                res += single_info
 
             else:
 
@@ -124,18 +133,27 @@ class CashRegister():
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
                 print(single_info)
+                res += single_info
 
         print('----------------------')
+        res += '----------------------'
         print('----------------------')
+        res += '----------------------'
         print('买二赠一商品:\n')
+        res += '买二赠一商品:\n'
 
         for item in buy2send1_good:
             print('名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit'])
+            res += '名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit']
 
         print('----------------------')
+        res += '----------------------'
         print('总计: ' + str(total_cost) + '(元)')
+        res += '总计: ' + str(total_cost) + '(元)'
         print('节省: ' + str(saved_cost) + '(元)')
+        res += '节省: ' + str(saved_cost) + '(元)'
         print('**********************')
+        res += '**********************'
 
 
     def print_95discount_ticket(self, input_file):
@@ -147,9 +165,10 @@ class CashRegister():
         name = ''
         unit = ''
         price = 0.0
+        res =''
 
         print('***<没钱赚商店>购物清单***')
-
+        res += '***<没钱赚商店>购物清单***'
         for key in shopping_dict:
             count = shopping_dict[key]
             if key in discount95_good_list:
@@ -167,6 +186,7 @@ class CashRegister():
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)' + ',' + ' 节省: ' + str(saved_single) + '(元)'
                 print(single_info)
+                res += single_info
 
             else:
                 for item in good_list:
@@ -180,12 +200,18 @@ class CashRegister():
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
                 print(single_info)
+                res += single_info
 
 
         print('----------------------')
+        res += '----------------------'
         print('总计: ' + str(total_cost) + '(元)')
+        res += '总计: ' + str(total_cost) + '(元)'
         print('节省: ' + str(saved_cost) + '(元)')
+        res += '节省: ' + str(saved_cost) + '(元)'
         print('**********************')
+        res += '**********************'
+        return res
 
 
     def print_two_benefit_ticket(self, input_file):
@@ -199,8 +225,10 @@ class CashRegister():
         name = ''
         unit = ''
         price = 0.0
+        res =''
 
         print('***<没钱赚商店>购物清单***')
+        res += '***<没钱赚商店>购物清单***'
         for key in shopping_dict:
             count = shopping_dict[key]
             if key in buy2send1_good_list and float(count) >= 3.0:
@@ -222,6 +250,7 @@ class CashRegister():
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
                 print(single_info)
+                res += single_info
 
             elif (key in buy2send1_good_list and key in discount95_good_list and float(count) < 3.0) or (key  not in buy2send1_good_list and key  in discount95_good_list):
                 for item in good_list:
@@ -239,6 +268,7 @@ class CashRegister():
                     price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)' + ',' + ' 节省: ' + str(
                     saved_single) + '(元)'
                 print(single_info)
+                res += single_info
 
             else:
                 for item in good_list:
@@ -252,17 +282,26 @@ class CashRegister():
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
                 print(single_info)
+                res += single_info
 
         print('----------------------')
+        res += '----------------------'
         print('买二赠一商品:\n')
+        res += '买二赠一商品:\n'
 
         for item in buy2send1_good:
             print('名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit'])
+            res += '名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit']
 
         print('----------------------')
+        res += '----------------------'
         print('总计: ' + str(total_cost) + '(元)')
+        res += '总计: ' + str(total_cost) + '(元)'
         print('节省: ' + str(saved_cost) + '(元)')
+        res += '节省: ' + str(saved_cost) + '(元)'
         print('**********************')
+        res += '**********************'
+        return res
 
 
     def print_all_ticket(self, input_file):
