@@ -41,8 +41,8 @@ class CashRegister():
 
 
 
-    def print_ticket(self):
-        shopping_dict = self.produce_shopping_good_list('../input.json')
+    def print_ticket(self, input_file):
+        shopping_dict = self.produce_shopping_good_list(input_file)
         total_cost = 0.0
         name = ''
         unit = ''
@@ -77,5 +77,8 @@ class CashRegister():
         print('总计: ' + str(total_cost) + '(元)')
         print('\n')
         print('**********************')
+
+
+    
 
 
