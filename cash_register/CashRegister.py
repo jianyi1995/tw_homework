@@ -70,14 +70,14 @@ class CashRegister():
 
             single_total = price * count
             total_cost += single_total
-            single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+            single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
             print(single_info)
             res += single_info + '\n'
 
         print('----------------------')
         res += '----------------------\n'
-        print('总计: ' + str(total_cost) + '(元)')
-        res += '总计: ' + str(total_cost) + '(元)\n'
+        print('总计: ' + '%.2f' % total_cost + '(元)')
+        res += '总计: ' + '%.2f' %total_cost + '(元)\n'
         print('**********************')
         res += '**********************\n'
         return res
@@ -116,7 +116,7 @@ class CashRegister():
                 single_total = price * new_count
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
-                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                    price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
                 print(single_info)
                 res += single_info + '\n'
 
@@ -131,7 +131,7 @@ class CashRegister():
                 single_total = price * count
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
-                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                    price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
                 print(single_info)
                 res += single_info + '\n'
 
@@ -148,10 +148,10 @@ class CashRegister():
 
         print('----------------------')
         res += '----------------------\n'
-        print('总计: ' + str(total_cost) + '(元)')
-        res += '总计: ' + str(total_cost) + '(元)' + '\n'
-        print('节省: ' + str(saved_cost) + '(元)')
-        res += '节省: ' + str(saved_cost) + '(元)' + '\n'
+        print('总计: ' + '%.2f' % total_cost + '(元)')
+        res += '总计: ' + '%.2f' % total_cost + '(元)' + '\n'
+        print('节省: ' + '%.2f' % saved_cost + '(元)')
+        res += '节省: ' + '%.2f' % saved_cost + '(元)' + '\n'
         print('**********************')
         res += '**********************\n'
         return res
@@ -185,7 +185,7 @@ class CashRegister():
                 total_cost += single_total
                 saved_cost += saved_single
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
-                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)' + ',' + ' 节省: ' + str(saved_single) + '(元)'
+                    price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)' + ',' + ' 节省: ' + '%.2f' % saved_single + '(元)'
                 print(single_info)
                 res += single_info + '\n'
 
@@ -199,17 +199,17 @@ class CashRegister():
                 single_total = price * count
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
-                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                    price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
                 print(single_info)
                 res += single_info + '\n'
 
 
         print('----------------------')
         res += '----------------------\n'
-        print('总计: ' + str(total_cost) + '(元)')
-        res += '总计: ' + str(total_cost) + '(元)' + '\n'
-        print('节省: ' + str(saved_cost) + '(元)')
-        res += '节省: ' + str(saved_cost) + '(元)' + '\n'
+        print('总计: ' + '%.2f' % total_cost + '(元)')
+        res += '总计: ' + '%.2f' % total_cost + '(元)' + '\n'
+        print('节省: ' + '%.2f' %saved_cost + '(元)')
+        res += '节省: ' + '%.2f' % saved_cost + '(元)' + '\n'
         print('**********************')
         res += '**********************\n'
         return res
@@ -249,7 +249,7 @@ class CashRegister():
                 single_total = price * new_count
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
-                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                    price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
                 print(single_info)
                 res += single_info + '\n'
 
@@ -266,8 +266,7 @@ class CashRegister():
                 total_cost += single_total
                 saved_cost += saved_single
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
-                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)' + ',' + ' 节省: ' + str(
-                    saved_single) + '(元)'
+                    price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)' + ',' + ' 节省: ' + '%.2f' % saved_single + '(元)'
                 print(single_info)
                 res += single_info + '\n'
 
@@ -281,7 +280,7 @@ class CashRegister():
                 single_total = price * count
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
-                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                    price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
                 print(single_info)
                 res += single_info + '\n'
 
@@ -296,10 +295,10 @@ class CashRegister():
 
         print('----------------------')
         res += '----------------------\n'
-        print('总计: ' + str(total_cost) + '(元)')
-        res += '总计: ' + str(total_cost) + '(元)' + '\n'
-        print('节省: ' + str(saved_cost) + '(元)')
-        res += '节省: ' + str(saved_cost) + '(元)' + '\n'
+        print('总计: ' + '%.2f' % total_cost + '(元)')
+        res += '总计: ' + '%.2f' % total_cost + '(元)' + '\n'
+        print('节省: ' + '%.2f' % saved_cost + '(元)')
+        res += '节省: ' + '%.2f' % saved_cost + '(元)' + '\n'
         print('**********************')
         res += '**********************\n'
         return res
