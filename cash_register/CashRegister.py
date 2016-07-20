@@ -154,6 +154,7 @@ class CashRegister():
         res += '节省: ' + str(saved_cost) + '(元)'
         print('**********************')
         res += '**********************'
+        return res
 
 
     def print_95discount_ticket(self, input_file):
@@ -331,24 +332,19 @@ class CashRegister():
                 discount95_good.append(key)
 
         if (not discount95_good) and (not buy2send1_good):
-            self.print_ticket(input_file)
-            return
+            return self.print_ticket(input_file)
 
         elif (not discount95_good) and buy2send1_good:
-            self.print_buy2send1_ticket(input_file)
-            return
+            return self.print_buy2send1_ticket(input_file)
 
         elif discount95_good and (not buy2send1_good):
-            self.print_95discount_ticket(input_file)
-            return
+            return self.print_95discount_ticket(input_file)
 
         elif set(discount95_good) == set(buy2send1_good):
-            self.print_buy2send1_ticket(input_file)
-            return
+            return self.print_buy2send1_ticket(input_file)
 
         elif discount95_good and buy2send1_good:
-            self.print_two_benefit_ticket(input_file)
-            return
+            return self.print_two_benefit_ticket(input_file)
 
         else:
             print('输入文件有误,请检查')
