@@ -20,3 +20,7 @@ class CashRegister():
             buy2send1_good_list = json.load(f)
             return buy2send1_good_list
 
+    def produce_good_information_list(self):
+        with open('../good_information.json', 'r+', encoding='utf-8') as f:
+            good_information_list = json.load(f)
+            return good_information_list

@@ -18,3 +18,7 @@ class TestCashRegister(TestCase):
     def test_buy2send1_list(self):
         cash_register = CashRegister()
         self.assertIsNotNone(cash_register.produce_buy2send1_good_list())
+
+    def test_good_information(self):
+        cash_register = CashRegister()
+        self.assertIsNotNone(cash_register.produce_good_information_list())
