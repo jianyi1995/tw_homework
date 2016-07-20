@@ -1,12 +1,13 @@
-[
-  {"barcode":"ITEM000001","name":"¿É¿Ú¿ÉÀÖ","unit":"Æ¿",
-    "category":"Ê³Æ·","subCategory":"Ì¼ËáÒûÁÏ","price":3.00},
-  {"barcode":"ITEM000002","name":"Ñ©±Ì","unit":"Æ¿",
-    "category":"Ê³Æ·","subCategory":"Ì¼ËáÒûÁÏ","price":3.00},
-  {"barcode":"ITEM000003","name":"Æ»¹û","unit":"½ï",
-    "category":"Ê³Æ·","subCategory":"Ë®¹û","price":5.50},
-  {"barcode":"ITEM000004","name":"ÓğÃ«Çò","unit":"¸ö",
-    "category":"ÔË¶¯","subCategory":"ÇòÀà","price":1.00}
-  {"barcode":"ITEM000005","name":"ÍøÇò","unit":"¸ö",
-    "category":"ÔË¶¯","subCategory":"ÇòÀà","price":3.00}
+ [
+  {"barcode":"ITEM000001","name":"å¯å£å¯ä¹","unit":"ç“¶",
+    "category":"é£Ÿå“","subCategory":"ç¢³é…¸é¥®æ–™","price":3.00},
+  {"barcode":"ITEM000002","name":"é›ªç¢§","unit":"ç“¶",
+    "category":"é£Ÿå“","subCategory":"ç¢³é…¸é¥®æ–™","price":3.00},
+  {"barcode":"ITEM000003","name":"è‹¹æœ","unit":"æ–¤",
+    "category":"é£Ÿå“","subCategory":"æ°´æœ","price":5.50},
+  {"barcode":"ITEM000004","name":"ç¾½æ¯›çƒ","unit":"ä¸ª",
+    "category":"è¿åŠ¨","subCategory":"çƒç±»","price":1.00},
+   {"barcode":"ITEM000005","name":"ç½‘çƒ","unit":"ä¸ª",
+    "category":"è¿åŠ¨","subCategory":"çƒç±»","price":3.00}
+   
 ]
