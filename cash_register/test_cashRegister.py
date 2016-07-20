@@ -11,3 +11,7 @@ class TestCashRegister(TestCase):
         self.assertEqual(cash_register.isRightBarcode('ITEM000003-'), False)
         self.assertEqual(cash_register.isRightBarcode('ITEM'), False)
 
+
+    def test_discount_list(self):
+        cash_register = CashRegister()
+        self.assertIsNotNone(cash_register.produce_discount_good_list())
