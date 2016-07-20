@@ -1,5 +1,6 @@
 import re
 import json
+from collections import Counter
 class CashRegister():
 
     def isRightBarcode(self, barCode):
@@ -24,3 +25,18 @@ class CashRegister():
         with open('../good_information.json', 'r+', encoding='utf-8') as f:
             good_information_list = json.load(f)
             return good_information_list
+
+    def produce_shopping_good_list(self):
+        tmp_dict = {}  # 存放商品编码和数量
+        with open('../input.json', 'r+', encoding='utf-8') as f:
+            data = json.load(f)
+            for item in data:
+                tmp = item.split('-')
+                if len(tmp) == 2:
+                    tmp_dict[tmp[0]] = float(tmp[1])
+                    data.remove(item)
+            count_dict = Counter(data)
+            shopping_dict = dict(count_dict, **tmp_dict)
+            return shopping_dict
+
+
