@@ -53,7 +53,7 @@ class TestCashRegister(TestCase):
             '**********************'
         self.assertEqual(expected_out, cash_register.print_ticket('../no_discount.json'))
 
-    def test_print_with_only_95_discount(self):
+    def test_print_with_95_discount(self):
         cash_register = CashRegister()
         expected_out = \
             '***<没钱赚商店>购物清单***\n' + \
@@ -73,5 +73,15 @@ class TestCashRegister(TestCase):
             '节省: 0.6(元)\n' + \
             '**********************'
         self.assertEqual(expected_out, cash_register.print_ticket('../discount_95_with_more_goods.json'))
+
+        expected_out = \
+            '***<没钱赚商店>购物清单***\n' + \
+            '名称: 雪碧, 数量: 2(瓶), 单价: 3.0(元), 小计: 5.7(元), 节省 0.3(元)\n' + \
+            '名称: 可口可乐, 数量: 2(瓶), 单价: 3.0(元), 小计: 6.0(元)\n' + \
+            '----------------------\n' + \
+            '总计: 11.7(元)\n' + \
+            '节省: 0.3(元)\n' + \
+            '**********************'
+        self.assertEqual(expected_out, cash_register.print_ticket('../one_discount_95_good_and_one_no_discount_good.json'))
 
 
