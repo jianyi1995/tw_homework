@@ -12,14 +12,20 @@ class CashRegister():
             return False
 
     def produce_discount_good_list(self):
-        with open('../discount95.json', 'r+', encoding='utf-8') as f:
-            discount_good_list = json.load(f)
-            return discount_good_list
+        try:
+            with open('../discount95.json', 'r+', encoding='utf-8') as f:
+                discount_good_list = json.load(f)
+                return discount_good_list
+        except:
+            return []
 
     def produce_buy2send1_good_list(self):
-        with open('../buy2send1.json', 'r+', encoding='utf-8') as f:
-            buy2send1_good_list = json.load(f)
-            return buy2send1_good_list
+        try:
+            with open('../buy2send1.json', 'r+', encoding='utf-8') as f:
+                buy2send1_good_list = json.load(f)
+                return buy2send1_good_list
+        except:
+            return []
 
     def produce_good_information_list(self):
         with open('../good_information.json', 'r+', encoding='utf-8') as f:
@@ -28,6 +34,7 @@ class CashRegister():
 
     def produce_shopping_good_list(self, input_file):
         tmp_dict = {}
+
         with open(input_file, 'r+', encoding='utf-8') as f:
             data = json.load(f)
             for item in data:
@@ -48,12 +55,7 @@ class CashRegister():
         unit = ''
         price = 0.0
         single_total = 0.0
-        for key in shopping_dict:
-            result = self.isRightBarcode(key)
-            if not result:
-                msg = key + '不是一个正确的条形码,请检查'
-                print(msg)
-                return
+
 
         print('***<没钱赚商店>购物清单***')
         for key in shopping_dict:
@@ -67,18 +69,257 @@ class CashRegister():
 
             single_total = price * count
             total_cost += single_total
-            print('\n')
             single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
             print(single_info)
 
-        print('\n')
         print('----------------------')
-        print('\n')
         print('总计: ' + str(total_cost) + '(元)')
-        print('\n')
+        print('**********************')
+
+    def print_buy2send1_ticket(self, input_file):
+
+        good_list = self.produce_good_information_list()
+        shopping_dict = self.produce_shopping_good_list(input_file)
+        buy2send1_good_list = self.produce_buy2send1_good_list()
+        saved_cost = 0.0
+        total_cost = 0.0
+        name = ''
+        unit = ''
+        price = 0.0
+        buy2send1_good = []
+
+        print('***<没钱赚商店>购物清单***')
+        for key in shopping_dict:
+            count = shopping_dict[key]
+            if key in buy2send1_good_list and float(count) >= 3.0:
+                new_count = int(count - count // 3)
+                for item in good_list:
+                    if item['barcode'] == key:
+                        name = item['name']
+                        unit = item['unit']
+                        price = item['price']
+                        tmp = {}
+                        tmp['name'] = name
+                        tmp['count'] = count - new_count
+                        tmp['unit'] = unit
+                        saved_cost += (count - new_count) * price
+                        buy2send1_good.append(tmp)
+
+                single_total = price * new_count
+                total_cost += single_total
+                single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
+                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                print(single_info)
+
+            else:
+
+                for item in good_list:
+                    if item['barcode'] == key:
+                        name = item['name']
+                        unit = item['unit']
+                        price = item['price']
+
+                single_total = price * count
+                total_cost += single_total
+                single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
+                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                print(single_info)
+
+        print('----------------------')
+        print('----------------------')
+        print('买二赠一商品:\n')
+
+        for item in buy2send1_good:
+            print('名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit'])
+
+        print('----------------------')
+        print('总计: ' + str(total_cost) + '(元)')
+        print('节省: ' + str(saved_cost) + '(元)')
         print('**********************')
 
 
-    
+    def print_95discount_ticket(self, input_file):
+        good_list = self.produce_good_information_list()
+        shopping_dict = self.produce_shopping_good_list(input_file)
+        discount95_good_list = self.produce_discount_good_list()
+        saved_cost = 0.0
+        total_cost = 0.0
+        name = ''
+        unit = ''
+        price = 0.0
+
+        print('***<没钱赚商店>购物清单***')
+
+        for key in shopping_dict:
+            count = shopping_dict[key]
+            if key in discount95_good_list:
+                for item in good_list:
+                    if item['barcode'] == key:
+                        name = item['name']
+                        unit = item['unit']
+                        price = item['price']
+
+                single_total = price * count * 0.95
+                saved_single = price * count - single_total
+                saved_single = float('%.2f' % saved_single)
+                total_cost += single_total
+                saved_cost += saved_single
+                single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
+                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)' + ',' + ' 节省: ' + str(saved_single) + '(元)'
+                print(single_info)
+
+            else:
+                for item in good_list:
+                    if item['barcode'] == key:
+                        name = item['name']
+                        unit = item['unit']
+                        price = item['price']
+
+                single_total = price * count
+                total_cost += single_total
+                single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
+                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                print(single_info)
+
+
+        print('----------------------')
+        print('总计: ' + str(total_cost) + '(元)')
+        print('节省: ' + str(saved_cost) + '(元)')
+        print('**********************')
+
+
+    def print_two_benefit_ticket(self, input_file):
+        good_list = self.produce_good_information_list()
+        shopping_dict = self.produce_shopping_good_list(input_file)
+        discount95_good_list = self.produce_discount_good_list()
+        buy2send1_good_list = self.produce_buy2send1_good_list()
+        buy2send1_good = []
+        saved_cost = 0.0
+        total_cost = 0.0
+        name = ''
+        unit = ''
+        price = 0.0
+
+        print('***<没钱赚商店>购物清单***')
+        for key in shopping_dict:
+            count = shopping_dict[key]
+            if key in buy2send1_good_list and float(count) >= 3.0:
+                new_count = int(count - count // 3)
+                for item in good_list:
+                    if item['barcode'] == key:
+                        name = item['name']
+                        unit = item['unit']
+                        price = item['price']
+                        tmp = {}
+                        tmp['name'] = name
+                        tmp['count'] = count - new_count
+                        tmp['unit'] = unit
+                        saved_cost += (count - new_count) * price
+                        buy2send1_good.append(tmp)
+
+                single_total = price * new_count
+                total_cost += single_total
+                single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
+                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                print(single_info)
+
+            elif (key in buy2send1_good_list and key in discount95_good_list and float(count) < 3.0) or (key  not in buy2send1_good_list and key  in discount95_good_list):
+                for item in good_list:
+                    if item['barcode'] == key:
+                        name = item['name']
+                        unit = item['unit']
+                        price = item['price']
+
+                single_total = price * count * 0.95
+                saved_single = price * count - single_total
+                saved_single = float('%.2f' % saved_single)
+                total_cost += single_total
+                saved_cost += saved_single
+                single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
+                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)' + ',' + ' 节省: ' + str(
+                    saved_single) + '(元)'
+                print(single_info)
+
+            else:
+                for item in good_list:
+                    if item['barcode'] == key:
+                        name = item['name']
+                        unit = item['unit']
+                        price = item['price']
+
+                single_total = price * count
+                total_cost += single_total
+                single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
+                    price) + '(元)' + ',' + ' 小计: ' + str(single_total) + '(元)'
+                print(single_info)
+
+        print('----------------------')
+        print('买二赠一商品:\n')
+
+        for item in buy2send1_good:
+            print('名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit'])
+
+        print('----------------------')
+        print('总计: ' + str(total_cost) + '(元)')
+        print('节省: ' + str(saved_cost) + '(元)')
+        print('**********************')
+
+
+    def print_all_ticket(self, input_file):
+
+        shopping_dict = self.produce_shopping_good_list(input_file)
+        discount95_good_list = self.produce_discount_good_list()
+        buy2send1_good_list = self.produce_buy2send1_good_list()
+        discount95_good = []
+        buy2send1_good = []
+
+        for key in shopping_dict:
+            result = self.isRightBarcode(key)
+            if not result:
+                msg = key + '不是一个正确的条形码,请检查'
+                print(msg)
+                return
+
+        for key in shopping_dict:
+            count = shopping_dict[key]
+            if key in (buy2send1_good_list) and (float(count) >= 3.0):
+                buy2send1_good.append(key)
+
+            if (key in buy2send1_good_list) and (float(count) < 3.0) and (key in discount95_good_list):
+                discount95_good.append(key)
+
+            if (key not in buy2send1_good_list) and (key in discount95_good_list):
+                discount95_good.append(key)
+
+        if (not discount95_good) and (not buy2send1_good):
+            self.print_ticket(input_file)
+            return
+
+        elif (not discount95_good) and buy2send1_good:
+            self.print_buy2send1_ticket(input_file)
+            return
+
+        elif discount95_good and (not buy2send1_good):
+            self.print_95discount_ticket(input_file)
+            return
+
+        elif set(discount95_good) == set(buy2send1_good):
+            self.print_buy2send1_ticket(input_file)
+            return
+
+        elif discount95_good and buy2send1_good:
+            self.print_two_benefit_ticket(input_file)
+            return
+
+        else:
+            print('输入文件有误,请检查')
+
+
+
+
+
+
+
+
 
 
