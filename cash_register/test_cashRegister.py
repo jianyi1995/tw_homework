@@ -109,3 +109,19 @@ class TestCashRegister(TestCase):
             '总计: 8.0(元)\n' + \
             '**********************'
         self.assertEqual(expected_out, cash_register.print_all_ticket('../discount_buy2send1_with_2_good.json'))
+
+    def test_print_all_kinds_good(self):
+        cash_register = CashRegister()
+        expected_out = \
+            '***<没钱赚商店>购物清单***\n' + \
+            '名称: 可口可乐, 数量: 3(瓶), 单价: 3.0(元), 小计: 6.0(元)\n' + \
+            '名称: 苹果, 数量: 2(斤), 单价: 5.5(元), 小计: 11.0(元)\n' + \
+            '名称: 羽毛球, 数量: 3(个), 单价: 3.0(元), 小计: 8.55(元), 节省: 0.45(元)\n' + \
+            '----------------------\n' + \
+            '买二赠一商品: \n' + \
+            '名称：可口可乐，数量：1瓶 \n' + \
+            '----------------------\n' + \
+            '总计: 25.55(元)\n' + \
+            '节省: 3.45(元)\n' + \
+            '**********************'
+        self.assertEqual(expected_out, cash_register.print_all_ticket('../input.json'))
