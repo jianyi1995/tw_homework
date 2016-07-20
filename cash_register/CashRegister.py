@@ -40,7 +40,7 @@ class CashRegister():
             for item in data:
                 tmp = item.split('-')
                 if len(tmp) == 2:
-                    tmp_dict[tmp[0]] = float(tmp[1])
+                    tmp_dict[tmp[0]] = int(tmp[1])
                     data.remove(item)
             count_dict = Counter(data)
             shopping_dict = dict(count_dict, **tmp_dict) # 存放商品编码和购买数量
