@@ -13,7 +13,7 @@ class CashRegister():
 
     def produce_discount_good_list(self):
         try:
-            with open('../discount95.json', 'r+', encoding='utf-8') as f:
+            with open('discount95.json', 'r+', encoding='utf-8') as f:
                 discount_good_list = json.load(f)
                 return discount_good_list
         except:
@@ -21,14 +21,14 @@ class CashRegister():
 
     def produce_buy2send1_good_list(self):
         try:
-            with open('../buy2send1.json', 'r+', encoding='utf-8') as f:
+            with open('buy2send1.json', 'r+', encoding='utf-8') as f:
                 buy2send1_good_list = json.load(f)
                 return buy2send1_good_list
         except:
             return []
 
     def produce_good_information_list(self):
-        with open('../good_information.json', 'r+', encoding='utf-8') as f:
+        with open('good_information.json', 'r+', encoding='utf-8') as f:
             good_information_list = json.load(f)
             return good_information_list
 
@@ -58,7 +58,6 @@ class CashRegister():
         single_total = 0.0
 
         res += '***<没钱赚商店>购物清单***\n'
-        print('***<没钱赚商店>购物清单***')
         for key in shopping_dict:
             count = shopping_dict[key]
             good_list = self.produce_good_information_list()
@@ -71,14 +70,10 @@ class CashRegister():
             single_total = price * count
             total_cost += single_total
             single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
-            print(single_info)
             res += single_info + '\n'
 
-        print('----------------------')
         res += '----------------------\n'
-        print('总计: ' + '%.2f' % total_cost + '(元)')
         res += '总计: ' + '%.2f' %total_cost + '(元)\n'
-        print('**********************')
         res += '**********************\n'
         return res
 
@@ -95,7 +90,6 @@ class CashRegister():
         buy2send1_good = []
         res = ''
 
-        print('***<没钱赚商店>购物清单***')
         res += '***<没钱赚商店>购物清单***\n'
         for key in shopping_dict:
             count = shopping_dict[key]
@@ -117,7 +111,6 @@ class CashRegister():
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
-                print(single_info)
                 res += single_info + '\n'
 
             else:
@@ -132,27 +125,18 @@ class CashRegister():
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
-                print(single_info)
                 res += single_info + '\n'
 
-        print('----------------------')
         res += '----------------------\n'
-        print('----------------------')
         res += '----------------------\n'
-        print('买二赠一商品:\n')
         res += '买二赠一商品:\n'
 
         for item in buy2send1_good:
-            print('名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit'])
             res += '名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit'] + '\n'
 
-        print('----------------------')
         res += '----------------------\n'
-        print('总计: ' + '%.2f' % total_cost + '(元)')
         res += '总计: ' + '%.2f' % total_cost + '(元)' + '\n'
-        print('节省: ' + '%.2f' % saved_cost + '(元)')
         res += '节省: ' + '%.2f' % saved_cost + '(元)' + '\n'
-        print('**********************')
         res += '**********************\n'
         return res
 
@@ -168,7 +152,6 @@ class CashRegister():
         price = 0.0
         res =''
 
-        print('***<没钱赚商店>购物清单***')
         res += '***<没钱赚商店>购物清单***\n'
         for key in shopping_dict:
             count = shopping_dict[key]
@@ -186,7 +169,6 @@ class CashRegister():
                 saved_cost += saved_single
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)' + ',' + ' 节省: ' + '%.2f' % saved_single + '(元)'
-                print(single_info)
                 res += single_info + '\n'
 
             else:
@@ -200,17 +182,12 @@ class CashRegister():
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
-                print(single_info)
                 res += single_info + '\n'
 
 
-        print('----------------------')
         res += '----------------------\n'
-        print('总计: ' + '%.2f' % total_cost + '(元)')
         res += '总计: ' + '%.2f' % total_cost + '(元)' + '\n'
-        print('节省: ' + '%.2f' %saved_cost + '(元)')
         res += '节省: ' + '%.2f' % saved_cost + '(元)' + '\n'
-        print('**********************')
         res += '**********************\n'
         return res
 
@@ -228,7 +205,6 @@ class CashRegister():
         price = 0.0
         res =''
 
-        print('***<没钱赚商店>购物清单***')
         res += '***<没钱赚商店>购物清单***\n'
         for key in shopping_dict:
             count = shopping_dict[key]
@@ -250,7 +226,6 @@ class CashRegister():
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
-                print(single_info)
                 res += single_info + '\n'
 
             elif (key in buy2send1_good_list and key in discount95_good_list and float(count) < 3.0) or (key  not in buy2send1_good_list and key  in discount95_good_list):
@@ -267,7 +242,6 @@ class CashRegister():
                 saved_cost += saved_single
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)' + ',' + ' 节省: ' + '%.2f' % saved_single + '(元)'
-                print(single_info)
                 res += single_info + '\n'
 
             else:
@@ -281,25 +255,17 @@ class CashRegister():
                 total_cost += single_total
                 single_info = '名称: ' + name + ',' + ' 数量: ' + str(count) + '(' + unit + ')' + ',' + ' 单价: ' + str(
                     price) + '(元)' + ',' + ' 小计: ' + '%.2f' % single_total + '(元)'
-                print(single_info)
                 res += single_info + '\n'
 
-        print('----------------------')
         res += '----------------------\n'
-        print('买二赠一商品:\n')
         res += '买二赠一商品:\n'
 
         for item in buy2send1_good:
-            print('名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit'])
             res += '名称: ' + item['name'] + ',' + ' 数量: ' + str(item['count']) + item['unit'] + '\n'
 
-        print('----------------------')
         res += '----------------------\n'
-        print('总计: ' + '%.2f' % total_cost + '(元)')
         res += '总计: ' + '%.2f' % total_cost + '(元)' + '\n'
-        print('节省: ' + '%.2f' % saved_cost + '(元)')
         res += '节省: ' + '%.2f' % saved_cost + '(元)' + '\n'
-        print('**********************')
         res += '**********************\n'
         return res
 
@@ -353,7 +319,8 @@ class CashRegister():
 
 if __name__ == '__main__':
     s = CashRegister()
-    s.print_all_ticket('../no_discount_with_1_good_with_only_barcood.json')
+    print(s.print_all_ticket('no_discount_with_1_good_with_only_barcood.json'))
+    print(s.print_all_ticket('no_discount_with_1_good_with_barcood_with_number.json'))
 
 
 
