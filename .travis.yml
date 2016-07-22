@@ -4,4 +4,4 @@ python:
 - 3.5
 
 script:
-- python -m unittest discover . "*test_cashRegister.py"
+- python -m unittest discover . "cash_register/test_cashRegister.py"

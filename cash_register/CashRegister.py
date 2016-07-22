@@ -321,6 +321,7 @@ if __name__ == '__main__':
     s = CashRegister()
     print(s.print_all_ticket('no_discount_with_1_good_with_only_barcood.json'))
     print(s.print_all_ticket('no_discount_with_1_good_with_barcood_with_number.json'))
+    print(s.print_all_ticket('no_discount.json'))
 
 
 
